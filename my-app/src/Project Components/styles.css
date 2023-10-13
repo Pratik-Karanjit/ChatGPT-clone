@@ -1,0 +1,34 @@
+/* styles.css */
+/* Custom styling for the navigation bar */
+.navbar {
+    border-bottom: 2px solid #333; /* Add a border at the bottom of the navbar */
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #333; /* Change the color of the navbar toggler icon */
+  }
+  
+  .navbar-nav .nav-link {
+    margin: 0 10px;
+    font-weight: 500;
+  }
+  
+  /* Adjust the margin and font-weight of the navigation links */
+  
+  /* Add custom styling to the "Login" and "Register" buttons */
+  .navbar-nav .nav-item:last-child .nav-link {
+    background-color: #333;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+  
+  .navbar-nav .nav-item:last-child .nav-link:hover {
+    background-color: #555;
+  }
+  
