@@ -8,33 +8,34 @@ import { Token, User } from "../Schema/model.js";
 
 
 export let createUser = expressAsyncHandler(async (req, res, next) => {
-    let data = req.body;                                      //taking data from postman
-    data.isVerify = false                                     //we set isVerify and isDeactivate to false in code itself and not let the user decide
+    let data = req.body;             
+    // console.log(data)                    
+    data.isVerify = false                               
     data.isDeactivate = false                                 
-    let email = data.email                                    //getting email and storing in variable
-    let user = await User.findOne({ email:email });           //Checking if the email is in DB
+    let email = data.email                                 
+    let user = await User.findOne({ email:email });      
     
-    if (user) {                                               //If it is then show duplicate email error
+    if (user) {                                            
       let error = new Error("Duplicate email.");              
       error.statusCode = 409;
       throw error;
-    }else{                                                    //else hash the password and create User
+    }else{                                                 
       let _hashPassword = await hashPassword(data.password);
     data.password = _hashPassword;
     let result = await User.create(req.body);
-    delete result._doc.password;                              //delete password to not show it in response
-    let infoObj = {                                           //setting infoObj and expireInfo for generating token
+    delete result._doc.password;                         
+    let infoObj = {                                        
       id: result._id,
       role: result.role,
     };
     let expireInfo = {
       expiresIn: "1d",
     };
-    let token = await generateToken(infoObj, expireInfo);    //Calling the generate token function
+    let token = await generateToken(infoObj, expireInfo);   
     await Token.create({ token });
-    let link = `${baseUrl}/verify-email?token=${token}`      //Giving link and sending it to email for email verification
+    let link = `${baseUrl}/verify-email?token=${token}`     
     await sendMail({
-      from: '"Nitan Thapa" <uniquekc425@gmail.com>',         //This is the text that is shown in (sent by)
+      from: '"Chat.AI" <chatAI@gmail.com>',    
       to: [data.email],
       subject: "Email verification",
       html: `<h1>
@@ -51,17 +52,14 @@ export let createUser = expressAsyncHandler(async (req, res, next) => {
 
 
   export let verifyEmail = expressAsyncHandler(async (req, res, next) => {
-    let id = req.info.id;    //getting id from query and setting it in a variable
-    // console.log(id)
-    let tokenId = req.token.tokenId   //sent token inside isAuthenticated and received tokenId through it
-    // console.log(tokenId)
-    let result = await User.findByIdAndUpdate(         //This line updates the user document in the database with the provided id. 
+    let id = req.info.id; 
+    let tokenId = req.token.tokenId   
+    let result = await User.findByIdAndUpdate(        
       id,
-      { isVerify: true },    //isVerify is set to true, initially its false
-      { new: true }          //this updates the response at once and need not hit the postman twice
+      { isVerify: true },    
+      { new: true }    
     );
-    // delete result._doc.password;    //password should not be shown so we delete it
-    await Token.findByIdAndDelete(tokenId)    //No use
+    await Token.findByIdAndDelete(tokenId)    
   
     successResponse(
       res,
