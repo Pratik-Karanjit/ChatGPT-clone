@@ -24,17 +24,20 @@ const onSubmit = async (values, { setSubmitting, setFieldError }) => {
   try {
     const response = await axios.post('http://localhost:8000/users/login', values);
     const token = response.data.token;
-    setLoginInfo({ token });
+    // console.log("Response data:", response.data);
+    const email = response.data.email;
+    // console.log(token)
+    // console.log("&&&&&&&&&&&&&&&&&", email)
+    setLoginInfo({ token, email });
     navigate('/');
   } catch (error) {
     console.log('Unable to submit:', error);
-    setLoginError(true); 
-    setFieldError('password', 'Incorrect email or password'); 
+    setLoginError(true);
+    setFieldError('password', 'Incorrect email or password');
   } finally {
     setSubmitting(false);
   }
 };
-
 
 
   return (
