@@ -4,6 +4,8 @@ import HomePage from './Project Components/HomePage'
 import Navbar from './Project Components/NavLinks'
 import CreateLogin from './Project Components/CreateLogin'
 import CreateAccount from './Project Components/CreateAccount'
+import RegistrationSuccessPage from './Project Components/RegistrationSuccessPage'
+import VerifyEmailPage from './Project Components/VerifyEmail'
 
 const WowProject = () => {
   return (
@@ -17,6 +19,8 @@ const WowProject = () => {
 
               <Route path = "login" element = {<CreateLogin></CreateLogin>}></Route>
               <Route path = "register" element = {<CreateAccount></CreateAccount>}></Route>
+              <Route path="registration-success" element={<RegistrationSuccessPage></RegistrationSuccessPage>} />
+              <Route path="verify-email" element={<VerifyEmailPage />}querystring/>
 
             </Route>
 

@@ -20,7 +20,7 @@ const CreateAccount = () => {
         method: 'post',
         data: info,
       });
-
+      console.log(result);
       navigate('/registration-success');
     } catch (error) {
       console.log('unable to create');
@@ -28,8 +28,8 @@ const CreateAccount = () => {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().required('Required'),
-    password: Yup.string().required('Required'),
+    email: Yup.string().required('Required.'),
+    password: Yup.string().required('Required.'),
   });
 
   return (
