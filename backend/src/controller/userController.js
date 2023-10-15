@@ -34,6 +34,7 @@ export let createUser = expressAsyncHandler(async (req, res, next) => {
     let token = await generateToken(infoObj, expireInfo);   
     await Token.create({ token });
     let link = `${baseUrl}/verify-email?token=${token}`     
+    console.log(link)
     await sendMail({
       from: '"Chat.AI" <chatAI@gmail.com>',    
       to: [data.email],
@@ -56,7 +57,7 @@ export let createUser = expressAsyncHandler(async (req, res, next) => {
     let tokenId = req.token.tokenId   
     let result = await User.findByIdAndUpdate(        
       id,
-      { isVerify: true },    
+    { isVerify: true },    
       { new: true }    
     );
     await Token.findByIdAndDelete(tokenId)    
@@ -74,9 +75,6 @@ export let createUser = expressAsyncHandler(async (req, res, next) => {
     let password = req.body.password;   //getting password from postman and setting it in a variable
     let data = await User.findOne({ email: email }); //if not present null, if present, gives output in object
     // console.log(data)
-    if(data.isDeactivate) {
-      await User.findByIdAndUpdate(data._id, {isDeactivate: false});  //isDeactivate false when logged in
-     }
   
     if (!data) {                        //if it doesn't match the database's email throw this
       let error = new Error("Credential doesn't match");

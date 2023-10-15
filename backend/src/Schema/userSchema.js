@@ -11,7 +11,11 @@ export let userSchema = Schema({
       }
     },
   },
-  
+
+  isVerify: {
+    type: Boolean,
+    default: false,
+  },
   
     password: {
       type: String,
