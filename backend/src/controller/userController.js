@@ -71,43 +71,43 @@ export let createUser = expressAsyncHandler(async (req, res, next) => {
   });
   
   export let loginUser = expressAsyncHandler(async (req, res, next) => {
-    let email = req.body.email;         //getting email from postman and setting it in a variable
-    let password = req.body.password;   //getting password from postman and setting it in a variable
-    let data = await User.findOne({ email: email }); //if not present null, if present, gives output in object
-    // console.log(data)
+    let email = req.body.email;       
+    let password = req.body.password;
+    let data = await User.findOne({ email: email });
   
-    if (!data) {                        //if it doesn't match the database's email throw this
+    if (!data) {                      
       let error = new Error("Credential doesn't match");
       error.statusCode = 401;
       throw error;
     } else 
     {
-      let isValidPassword = await comparePassword(password, data.password);   //checking if password matches
-      if (!isValidPassword) {                            //if it doesn't match the database's password, throw error
+      let isValidPassword = await comparePassword(password, data.password); 
+      if (!isValidPassword) {                       
         let error = new Error("Credential doesn't match");
         error.statusCode = 401;
         throw error;
       } else {
-        if (!data.isVerify) {                  //If it is not verified, throw error
+        if (!data.isVerify) {               
   
           let error = new Error("Please Verify Your Account First.");
           error.statusCode = 401;
           throw error;
-        } else {                    //If it is verified, generate token
+        } else {                  
           let infoObj = {
             id: data._id,
             role: data.role,
+            email: data.email,                    //Adding email in infoObj to send in response to the frontend
+                                                  //This is done as to show the email address of the user when hes logged in
           };
           let expireInfo = {
             expiresIn: "365d",
           };
-          let token = await generateToken(infoObj, expireInfo);      //calling the generateToken function
-          await Token.create({ token });             //Theres a separate DB for Token so we are saving it there
-          res.json({ token }); // Send the token as part of the response
+          let token = await generateToken(infoObj, expireInfo);    
+          await Token.create({ token });       
+          res.json({ token, email: infoObj.email });              //Sent the email in response and is get in the CreateLogin file of frontend where SetLoginInfo is done
           successResponse(res, HttpStatus.CREATED, "Login Successfully", token);
         }
       }
-      // console.log("isValidPassword", isValidPassword);
     }
   });
 
