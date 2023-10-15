@@ -51,8 +51,8 @@ const CreateAccount = () => {
             >
               <Form>
                 <div className="form-group">
-                  <label>User Name</label>
-                  <Field type="text" name="email" className="form-control" placeholder="User Name" />
+                  <label>Email</label>
+                  <Field type="text" name="email" className="form-control" placeholder="Email" />
                   <ErrorMessage name="email" component="div" className="text-danger" />
                 </div>
                 <div className="form-group">
@@ -60,7 +60,7 @@ const CreateAccount = () => {
                   <Field type="password" name="password" className="form-control" placeholder="Password" />
                   <ErrorMessage name="password" component="div" className="text-danger" />
                 </div>
-                <button type="submit" className="btn btn-black">Login</button>
+                <button type="submit" className="btn btn-black">Register</button>
               </Form>
             </Formik>
           </div>

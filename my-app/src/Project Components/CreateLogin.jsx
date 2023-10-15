@@ -35,8 +35,8 @@ const CreateLogin = () => {
             >
               <Form>
                 <div className="form-group">
-                  <label>User Name</label>
-                  <Field type="text" name="username" className="form-control" placeholder="User Name" />
+                  <label>Email</label>
+                  <Field type="text" name="username" className="form-control" placeholder="Email" />
                   <ErrorMessage name="username" component="div" className="text-danger" />
                 </div>
                 <div className="form-group">
