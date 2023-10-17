@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import axios from 'axios';
 import { setLoginInfo } from '../utils/loginInfo';
+import Swal from 'sweetalert2';
 
 
 const CreateLogin = () => {
@@ -16,8 +17,8 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  email: Yup.string().required('Required'),
-  password: Yup.string().required('Required'),
+  email: Yup.string().required('Email is required.'),
+  password: Yup.string().required('Password is required.'),
 });
 
 const onSubmit = async (values, { setSubmitting, setFieldError }) => {
@@ -33,10 +34,19 @@ const onSubmit = async (values, { setSubmitting, setFieldError }) => {
   } catch (error) {
     console.log('Unable to submit:', error);
     setLoginError(true);
-    setFieldError('password', 'Incorrect email or password');
+    setFieldError('password', 'Incorrect email or password.');
   } finally {
     setSubmitting(false);
   }
+};
+
+const handleDeleteAlert = () => {
+  Swal.fire({
+    title: 'Login Error',
+    text: 'Incorrect email or password.',
+    icon: 'error',
+    confirmButtonText: 'OK',
+  });
 };
 
 
@@ -67,11 +77,12 @@ const onSubmit = async (values, { setSubmitting, setFieldError }) => {
                   <label>Password</label>
                   <Field type="password" name="password" className="form-control" placeholder="Password" />
                   <ErrorMessage name="password" component="div" className="text-danger" />
-                  {loginError && <div className="text-danger">Incorrect email or password</div>}
                 </div>
                 <button type="submit" className="btn btn-black">Login</button>
               </Form>
             </Formik>
+      {loginError && handleDeleteAlert()}
+
           </div>
         </div>
       </div>
