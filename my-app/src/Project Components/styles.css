@@ -127,3 +127,16 @@ body {
 .navigate-home:hover {
   background-color:gainsboro; 
 }
+
+
+
+
+/* home page */
+.hover-effect {
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.hover-effect:hover {
+  transform: scale(1.025); /* Scale the div by 5% on hover */
+}
