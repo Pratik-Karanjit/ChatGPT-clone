@@ -68,3 +68,5 @@ export const fromEmail = process.env.FROM_EMAIL;
 export const fromPassword = process.env.FROM_PASSWORD;
 export const emailHost = process.env.EMAIL_HOST;
 export const baseUrl = process.env.BASE_URL;
+export const devMode = process.env.DEV_MODE;
+
