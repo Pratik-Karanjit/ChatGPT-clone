@@ -30,6 +30,8 @@ const openai = new OpenAIApi(configuration);
 app.post("/", async (request, response) => {
   const { chats } = request.body;
 
+  // gpt 3.5 turbo as model 
+
   const result = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
