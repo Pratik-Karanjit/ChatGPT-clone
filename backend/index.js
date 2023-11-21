@@ -22,8 +22,8 @@ connectDb();
 app.use(express.static("./public"));
 
 const configuration = new Configuration({
-  organization: "org-BMjtvahkQJSu9GeXb4vnVcZO",
-  apiKey: "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",
+  // organization: "org-BMjtvahkQJSu9GeXb4vnVcZO",
+  // apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
