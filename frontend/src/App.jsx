@@ -58,6 +58,7 @@ function App() {
           : ""}
       </section>
 
+{/* If typing then isTyping else hide it */}
       <div className={isTyping ? "" : "hide"}>
         <p>
           <i>{isTyping ? "Typing" : ""}</i>
