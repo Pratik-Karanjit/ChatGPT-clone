@@ -44,7 +44,7 @@ function App() {
   return (
     <main>
       <h1>FullStack OpenAI ChatGPT Clone</h1>
-
+{/* //map method */}
       <section>
         {chats && chats.length
           ? chats.map((chat, index) => (
