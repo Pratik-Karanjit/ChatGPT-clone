@@ -24,8 +24,8 @@ app.use(express.static("./public"));
 
 //APIkey was generated from openAI's website itself and for the organization link navigate to organization page in the same website
 const configuration = new Configuration({
-  // organization: "org-BMjtvahkQJSu9GeXb4vnVcZO",
-  // apiKey: "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",
+  organization: "org-hVBve38enZcMyArDcdcudCqa",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 

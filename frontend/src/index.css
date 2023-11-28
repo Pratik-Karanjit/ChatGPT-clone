@@ -33,10 +33,10 @@ main{
 }
 
 p{
-  background-color: darkslategray;
+  background-color: rgb(4, 80, 80);
   max-width: 70%;
   padding: 15px;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 p span{
