@@ -42,6 +42,7 @@ function App() {
   };
 
   return (
+    // main tag here
     <main>
       <h1>FullStack OpenAI ChatGPT Clone</h1>
 {/* //map method */}
