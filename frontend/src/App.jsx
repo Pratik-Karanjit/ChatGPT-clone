@@ -8,6 +8,7 @@ function App() {
   const [isTyping, setIsTyping] = useState(false);
 
   const chat = async (e, message) => {
+    // using e.prventDefault to prevent rendering
     e.preventDefault();
 
     if (!message) return;
