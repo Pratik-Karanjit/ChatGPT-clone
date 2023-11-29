@@ -66,6 +66,7 @@ function App() {
         </p>
       </div>
 
+{/* using form */}
       <form action="" onSubmit={(e) => chat(e, message)}>
         <input
           type="text"
