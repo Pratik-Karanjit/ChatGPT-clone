@@ -15,6 +15,7 @@ function App() {
     setIsTyping(true);
     scrollTo(0, 1e10);
 
+    //setting chats in msgs variable
     let msgs = chats;
     msgs.push({ role: "user", content: message });
     setChats(msgs);
