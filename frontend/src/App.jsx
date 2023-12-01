@@ -49,6 +49,7 @@ function App() {
       <h1>FullStack OpenAI ChatGPT Clone</h1>
 {/* //map method */}
       <section>
+        {/* Ternary operator */}
         {chats && chats.length
           ? chats.map((chat, index) => (
               <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
